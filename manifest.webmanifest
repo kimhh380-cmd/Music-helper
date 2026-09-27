@@ -1,0 +1,29 @@
+{
+  "name": "악기 코드 도감",
+  "short_name": "악기 도감",
+  "description": "일렉기타·피아노·베이스의 코드 사전, 키별 코드, 스케일 도감, 리프 만들기",
+  "lang": "ko",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F2F4F6",
+  "theme_color": "#18212C",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
