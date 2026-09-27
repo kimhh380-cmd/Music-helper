@@ -1,0 +1,16 @@
+{
+  "name": "기타 코드 운지 사전",
+  "short_name": "기타 도감",
+  "description": "코드 운지 사전, 키별 코드, 스케일 도감, 리프 만들기가 들어 있는 기타 연습 앱",
+  "lang": "ko",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F2F4F6",
+  "theme_color": "#18212C",
+  "icons": [
+    {"src": "icon-192.png", "sizes": "192x192", "type": "image/png"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png"},
+    {"src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ]
+}
