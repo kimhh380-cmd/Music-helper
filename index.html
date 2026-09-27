@@ -3,101 +3,72 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="코드 운지 사전, 키별 코드, 스케일 도감, 리프 만들기가 들어 있는 기타 연습 앱">
+<meta name="description" content="일렉기타·피아노·베이스의 코드 사전, 키별 코드, 스케일 도감, 리프 만들기가 들어 있는 연습 앱">
 <meta name="theme-color" content="#18212C">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon-192.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="기타 도감">
-<title>기타 코드 운지 사전</title>
-
+<meta name="apple-mobile-web-app-title" content="악기 도감">
+<title>악기 코드 도감</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font-size:14px;font-family:system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="wrap">
-<h1>기타 코드 운지 사전</h1>
-<p class="lead">표준 튜닝(E A D G B E) 24프렛 일렉기타 기준이에요. 스케일 도감에서는 대표 스케일 4가지를 프렛 구간별로, 리프 만들기에서는 코드 진행으로 만든 리프 타브를 볼 수 있어요. 곡의 키를 고르면 그 키에서 쓰는 코드를 원하는 5칸 프렛 구간 안의 운지로 모아 보여주고, 코드 사전에서는 20가지 코드 종류 × 12개 근음의 가능한 운지를 모두 볼 수 있어요.</p>
-<div class="tabs" role="tablist"><button role="tab" id="t-key" aria-selected="true">키별 코드</button><button role="tab" id="t-dic" aria-selected="false">코드 사전</button><button role="tab" id="t-sc" aria-selected="false">스케일 도감</button><button role="tab" id="t-rf" aria-selected="false">리프 만들기</button></div>
-<section id="p-key">
-<div class="ctl"><span class="lb">키 근음</span><div class="roots" id="kroots" style="margin:0"></div></div>
-<div class="ctl"><span class="lb">장·단조</span><div class="seg" id="kmode"></div><span class="lb">코드</span><div class="seg" id="kset"></div></div>
-<div class="ctl"><span class="lb">프렛 구간</span><div class="fw"><button id="kprev" aria-label="한 칸 아래로">◀</button><output id="kout">0–4프렛</output><button id="knext" aria-label="한 칸 위로">▶</button></div><input type="range" id="kpos" min="0" max="20" value="0" aria-label="시작 프렛"></div>
-<div class="ctl"><span class="lb">사용 줄 수</span><div class="seg" id="kns"></div></div>
-<div class="ctl"><span class="lb">줄 위치</span><div class="seg" id="ksg"></div></div>
-<div class="ctl"><span class="lb">개방현</span><div class="seg" id="kos"></div></div>
-<p class="how" id="kdesc"></p>
-<div class="lg"><span><i style="background:var(--root)"></i>근음</span><span><i style="background:var(--ink)"></i>누르는 곳</span><span><i style="border:1.5px solid var(--ink)"></i>개방현</span><span><b style="color:var(--ink)">x</b> 치지 않는 줄</span></div>
-<div class="cnt" id="kcnt"></div>
-<div id="krows"></div>
-<section class="sty"><h2>주법별 추천 코드</h2><p class="how" id="sdesc"></p><h2 style="font-size:1rem;margin-top:18px">일렉기타</h2><div id="sel"></div><h2 style="font-size:1rem;margin-top:26px">어쿠스틱 기타</h2><div id="sac"></div></section>
+
+<section id="home">
+  <h1 class="ht">악기 코드 도감</h1>
+  <p class="lead">코드 사전, 키별 코드, 스케일 도감, 리프 만들기를 악기별로 볼 수 있어요. 연습할 악기를 골라 주세요.</p>
+  <div class="inst">
+    <button class="ic" id="pick-guitar" data-inst="guitar">
+      <svg class="ico" viewBox="0 0 120 70" aria-hidden="true"><line class="s" x1="10" y1="8" x2="10" y2="62" style="stroke-width:5"/><g class="s"><line x1="10" y1="8" x2="112" y2="8"/><line x1="10" y1="19" x2="112" y2="19"/><line x1="10" y1="30" x2="112" y2="30"/><line x1="10" y1="41" x2="112" y2="41"/><line x1="10" y1="52" x2="112" y2="52"/><line x1="10" y1="62" x2="112" y2="62"/><line x1="36" y1="8" x2="36" y2="62"/><line x1="61" y1="8" x2="61" y2="62"/><line x1="86" y1="8" x2="86" y2="62"/><line x1="112" y1="8" x2="112" y2="62"/></g><circle class="f" cx="48" cy="19" r="5"/><circle class="f" cx="73" cy="41" r="5"/><circle class="r" cx="73" cy="30" r="5"/><circle class="a" cx="98" cy="52" r="5"/></svg>
+      <span class="in">일렉기타</span><span class="id">6줄 · 24프렛 · 코드 운지, 스트로크·파워코드·펑크 리프</span><span class="last" hidden>지난번에 쓴 악기</span>
+    </button>
+    <button class="ic" id="pick-piano" data-inst="piano">
+      <svg class="ico" viewBox="0 0 120 70" aria-hidden="true"><g><rect class="w" x="4" y="6" width="16" height="58" rx="2"/><rect class="w" x="20" y="6" width="16" height="58" rx="2"/><rect class="w" x="36" y="6" width="16" height="58" rx="2"/><rect class="w" x="52" y="6" width="16" height="58" rx="2"/><rect class="w" x="68" y="6" width="16" height="58" rx="2"/><rect class="w" x="84" y="6" width="16" height="58" rx="2"/><rect class="w" x="100" y="6" width="16" height="58" rx="2"/></g><rect class="r" x="5" y="40" width="14" height="23" rx="2"/><rect class="a" x="37" y="40" width="14" height="23" rx="2"/><rect class="a" x="69" y="40" width="14" height="23" rx="2"/><g><rect class="b" x="15" y="6" width="10" height="34" rx="1.5"/><rect class="b" x="31" y="6" width="10" height="34" rx="1.5"/><rect class="b" x="63" y="6" width="10" height="34" rx="1.5"/><rect class="b" x="79" y="6" width="10" height="34" rx="1.5"/><rect class="b" x="95" y="6" width="10" height="34" rx="1.5"/></g></svg>
+      <span class="in">피아노</span><span class="id">C2~C7 · 코드 누르는 법(한 손·양손·전위), 블록·아르페지오 반주</span><span class="last" hidden>지난번에 쓴 악기</span>
+    </button>
+    <button class="ic" id="pick-bass" data-inst="bass">
+      <svg class="ico" viewBox="0 0 120 70" aria-hidden="true"><line class="s" x1="10" y1="10" x2="10" y2="60" style="stroke-width:5"/><g class="s" style="stroke-width:2.4"><line x1="10" y1="10" x2="114" y2="10"/><line x1="10" y1="27" x2="114" y2="27"/><line x1="10" y1="43" x2="114" y2="43"/><line x1="10" y1="60" x2="114" y2="60"/></g><g class="s"><line x1="36" y1="10" x2="36" y2="60"/><line x1="62" y1="10" x2="62" y2="60"/><line x1="88" y1="10" x2="88" y2="60"/><line x1="114" y1="10" x2="114" y2="60"/></g><circle class="r" cx="49" cy="60" r="6"/><circle class="f" cx="75" cy="43" r="6"/><circle class="a" cx="75" cy="27" r="6"/></svg>
+      <span class="in">베이스</span><span class="id">4줄 · 24프렛 · 코드 모양, 근음·옥타브·워킹 베이스 리프</span><span class="last" hidden>지난번에 쓴 악기</span>
+    </button>
+  </div>
+  <div class="feat">
+    <div><b>키별 코드</b>곡의 키를 고르면 그 키의 코드를 원하는 위치·조건으로 모아 보여줘요.</div>
+    <div><b>코드 사전</b>20가지 코드 종류 × 12개 근음의 가능한 운지(누르는 법)를 모두 보여줘요.</div>
+    <div><b>스케일 도감</b>대표 스케일 4가지를 악기 전체와 구간별로 보여줘요.</div>
+    <div><b>리프 만들기</b>코드 진행을 넣으면 주법에 맞는 리프를 만들어 반복 재생해요.</div>
+  </div>
 </section>
-<section id="p-sc" hidden>
-<div class="ctl"><span class="lb">스케일</span><div class="seg" id="sq"></div></div>
-<div class="ctl"><span class="lb">키 근음</span><div class="roots" id="sroots" style="margin:0"></div></div>
-<p class="how" id="sdesc2"></p>
-<div class="tones" id="stones"></div>
-<h2>넥 전체 (0–24프렛)</h2>
-<p class="how">색칠된 칸이 아래에서 고른 프렛 구간이에요. 옆으로 밀어 24프렛까지 볼 수 있어요.</p>
-<div class="neck" id="sneck"></div>
-<h2>프렛 구간별 보기</h2>
-<div class="ctl"><span class="lb">프렛 구간</span><div class="fw"><button id="sprev" aria-label="한 칸 아래로">◀</button><output id="sout">5–9프렛</output><button id="snext" aria-label="한 칸 위로">▶</button></div><input type="range" id="spos" min="0" max="20" value="5" aria-label="시작 프렛"></div>
-<div class="sbig" id="swin"></div>
-<div class="stab" id="stab"></div>
-<h2>5칸씩 나눠 한눈에 보기</h2>
-<div class="wgrid" id="sgrid"></div>
+
+<section id="app" hidden>
+  <div class="topbar"><button class="btn sec" id="switch">← 악기 바꾸기</button><span id="iname"></span></div>
+  <h1 id="apph1"></h1>
+  <p class="lead" id="applead"></p>
+  <div class="tabs" role="tablist"><button role="tab" id="t-key" aria-selected="true">키별 코드</button><button role="tab" id="t-dic" aria-selected="false">코드 사전</button><button role="tab" id="t-sc" aria-selected="false">스케일 도감</button><button role="tab" id="t-rf" aria-selected="false">리프 만들기</button></div>
+  <section id="p-key"></section>
+  <section id="p-dic" hidden></section>
+  <section id="p-sc" hidden></section>
+  <section id="p-rf" class="rf" hidden></section>
+  <p class="how" id="readhow" style="margin-top:28px"></p>
 </section>
-<section id="p-rf" class="rf" hidden>
-<p class="how">코드 진행과 박자를 넣으면 주법에 맞는 운지를 골라 리프 타브를 만들어요. 코드 뒤에 <code>:박수</code>를 붙이면 그 코드를 몇 박 칠지 정할 수 있어요(없으면 1마디). 예: <code>G:4 D:4 Em:2 C:2</code></p>
-<h2 style="margin-top:14px">키로 코드 고르기</h2>
-<div class="ctl"><span class="lb">키 근음</span><div class="roots" id="rkr" style="margin:0"></div></div>
-<div class="ctl"><span class="lb">장·단조</span><div class="seg" id="rkm"></div><span class="lb">코드</span><div class="seg" id="rks"></div></div>
-<p class="how">아래 코드를 누른 순서대로 진행에 추가되고, 그 순서로 반복 재생돼요. 코드 하나는 1마디예요.</p>
-<div class="roots" id="rkc"></div>
-<div class="btns" style="margin-top:10px"><button class="btn sec" id="rkundo">마지막 코드 지우기</button><button class="btn sec" id="rkclr">전체 지우기</button></div>
-<div class="rfg" style="grid-template-columns:1fr"><div><label class="lb2" for="rfc">코드 진행 (직접 수정 가능)</label><input type="text" id="rfc" value="Am:4 F:4 C:4 G:4" autocomplete="off" spellcheck="false"></div></div>
-<div class="rfg">
-<div><label class="lb2" for="rfts">박자표</label><select id="rfts"><option value="4">4/4</option><option value="3">3/4</option><option value="6">6/8</option></select></div>
-<div><label class="lb2" for="rfbpm">빠르기 (BPM)</label><input type="number" id="rfbpm" value="100" min="40" max="220"></div>
-<div><label class="lb2" for="rfst">주법</label><select id="rfst"><option value="strum">스트로크 반주</option><option value="arp">아르페지오</option><option value="pw">파워코드 록 리프</option><option value="funk">펑크 커팅</option></select></div>
-<div id="rfspw"><label class="lb2" for="rfsp">스트로크 패턴</label><select id="rfsp"><option value="0">칼립소 (포크 기본)</option><option value="1">8비트 다운업</option><option value="2">슬로우 고고 (16비트 발라드)</option><option value="3">4비트 다운 (록 발라드)</option></select></div>
-<div><label class="lb2" for="rfpos">운지 위치</label><select id="rfpos"><option value="-1">자동 (가깝게 이어서)</option></select></div>
+
 </div>
-<p class="how" id="rfspd"></p>
-<details class="smp" style="margin-top:14px"><summary style="cursor:pointer;font-weight:700">실제 기타 소리 쓰기 (녹음 파일 올리기)</summary>
-<p class="how">휴대폰으로 기타 개방현을 한 줄씩 한 번 튕겨 녹음해서 올리면, 계산으로 만든 소리 대신 그 녹음으로 모든 음을 연주해요. 6줄 모두 올리면 가장 자연스럽고, 1~2줄만 올려도 나머지 음은 가까운 녹음의 높이를 바꿔서 써요. 조용한 곳에서 한 줄만 울리게 녹음하고, 소리가 끝날 때까지 3~4초 기다려 주세요. 파일은 이 화면에서만 쓰이고 어디에도 올라가지 않아요.</p>
-<div class="rfg"><div><label class="lb2" for="smf0">6번줄 E (가장 굵은 줄) 개방현</label><input type="file" id="smf0" accept="audio/*"><div class="meta" id="smst0">없음</div></div><div><label class="lb2" for="smf1">5번줄 A 개방현</label><input type="file" id="smf1" accept="audio/*"><div class="meta" id="smst1">없음</div></div><div><label class="lb2" for="smf2">4번줄 D 개방현</label><input type="file" id="smf2" accept="audio/*"><div class="meta" id="smst2">없음</div></div><div><label class="lb2" for="smf3">3번줄 G 개방현</label><input type="file" id="smf3" accept="audio/*"><div class="meta" id="smst3">없음</div></div><div><label class="lb2" for="smf4">2번줄 B 개방현</label><input type="file" id="smf4" accept="audio/*"><div class="meta" id="smst4">없음</div></div><div><label class="lb2" for="smf5">1번줄 e (가장 가는 줄) 개방현</label><input type="file" id="smf5" accept="audio/*"><div class="meta" id="smst5">없음</div></div></div>
-<div class="btns"><button class="btn sec" id="smclr" hidden>녹음 소리 지우고 기본 소리로</button></div>
-</details>
-<div class="btns"><button class="btn" id="rfgo">리프 만들기</button><button class="btn sec" id="rfplay" aria-pressed="false">▶ 재생 (반복)</button><button class="btn sec" id="rfstop">■ 정지</button></div>
-<div class="err" id="rferr"></div>
-<h2>사용한 운지</h2><div class="vstrip" id="rfv"></div>
-<h2>리프 타브</h2><div class="rtab" id="rft"></div>
-<p class="how">타브 읽는 법: 맨 위가 1번줄(e), 맨 아래가 6번줄(E)이에요. 숫자는 누를 프렛, <code>x</code>는 왼손으로 줄을 살짝 막고 치는 뮤트 소리, <code>PM</code>은 오른손 팜뮤트, <code>↓ ↑</code>는 스트로크 방향이에요. 소리는 줄의 진동, 기타 몸통의 울림, 넓은 방의 잔향(리버브)을 계산으로 흉내 낸 어쿠스틱 기타 음색이에요. 재생하면 정지를 누를 때까지 처음부터 계속 반복되고, 줄마다 소리가 다음 음이 나올 때까지 이어져요. 재생 중에 주법이나 빠르기를 바꾸면 바로 반영돼요. 코드와 주법 규칙으로 새로 만든 연습용 리프예요.</p>
-</section>
-<section id="p-dic" hidden>
-<div class="qs" id="qs"></div>
-<div class="roots" id="roots"></div>
-<div class="stats" id="stats"></div>
-<h2 id="famh"></h2>
-<div class="grid famgrid" id="fam"></div>
-<h2>전체 목록</h2>
-<div class="bar" id="bar"></div>
-<div class="cnt" id="dcnt"></div>
-<div class="grid" id="all"></div>
-<button class="more" id="more" hidden>더 보기</button>
-</section>
-<p class="how" style="margin-top:28px">읽는 법: 가로줄 6개 중 맨 위가 1번줄(가는 e), 맨 아래가 6번줄(굵은 E)이에요. 굵은 세로선은 너트, 아래 숫자는 프렛 번호, 카드 아래 글자는 6번줄→1번줄 순서의 타브예요.<br>프렛 구간: 5칸 폭(예: 3–7프렛) 안에서 누르는 음이 모두 들어가는 운지만 보여줘요. 개방현은 손이 필요 없어서 어느 구간에서나 함께 쓸 수 있게 했어요. 단, 개방현만으로 이루어진 운지는 뺐어요.<br>개방현 없음: 모든 음을 손가락으로 누르는 운지라서 구간을 옮겨 다른 키에도 그대로 쓸 수 있어요.<br>줄 위치: 1~3번줄만은 고음 3줄(e·B·G)만, 4~6번줄만은 저음 3줄(D·A·E)만 쓰는 운지예요. 3줄 안에 들어가야 해서 음이 3개 이하인 코드(메이저, 마이너, sus, dim, aug, 파워코드와 5도를 뺀 세븐스 일부)에서 주로 나와요.<br>사용 줄 수: 실제로 소리 내는 줄의 개수예요. 2줄 운지는 두 음만 있는 파워코드(5)에서만 나와요.<br>포함 기준: 2~3줄 이상 연주(파워코드는 2줄부터), 손가락 4개 이하(바레 1개 허용), 누르는 프렛 간격 4칸 이내, 중간에 뮤트하는 줄은 최대 1줄. 세븐스·식스·나인스 코드는 실제 연주처럼 5도 생략을 허용하고 카드에 표시했어요.</p>
-</div>
-<script src="js/chords.js"></script>
-<script src="js/key.js"></script>
-<script src="js/dictionary.js"></script>
-<script src="js/scales.js"></script>
-<script src="js/riff.js"></script>
-<script src="js/sound.js"></script>
-<script src="js/main.js"></script>
+<script src="theory.js"></script>
+<script src="fretted.js"></script>
+<script src="piano.js"></script>
+<script src="instruments.js"></script>
+<script src="riff-rules.js"></script>
+<script src="sound.js"></script>
+<script src="ui-common.js"></script>
+<script src="tab-key.js"></script>
+<script src="tab-dict.js"></script>
+<script src="tab-scale.js"></script>
+<script src="tab-riff.js"></script>
+<script src="main.js"></script>
 <script>if('serviceWorker' in navigator){addEventListener('load',()=>{navigator.serviceWorker.register('sw.js',{updateViaCache:'none'}).catch(()=>{})})}</script>
 </body>
 </html>
